@@ -9,7 +9,7 @@ write(
 )
 writed_folder({"folder": "startsnake", "funct_name": "main"})
 write(
-    place_headers(
+    set_entity(
         {
             "coords": ["~", "~", "~"],
             "tags": "snake",

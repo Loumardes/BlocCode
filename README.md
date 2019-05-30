@@ -6,7 +6,7 @@ Scripting language for Minecraft datapacks
 ### writed_folder(folder = <folder/path , function_name = <mcfuction_name>)
 Choose the mcfunction where the next commands will be writed
 
-Arguments :
+#### Arguments :
 •	folder : The subfolder of the mcfunction
  	default value : last used folder
  	
@@ -15,7 +15,7 @@ Arguments :
 •	tag_function(optional) : “load” or “tick”
 “load” make the mcfunction run at datapack loading 
 “tick”  make the mcfunction run at each game ticks
-Examples :
+#### Examples :
 writed_folder(folder = "default" , function _name = "test")     
 writed_folder(folder = "default" , function _name = "test" , tag_function = "load")
 
@@ -23,11 +23,11 @@ writed_folder(folder = "default" , function _name = "test" , tag_function = "loa
 ### write(Commands)
 Write commands of the list in the mcfunction selected by the writed_folder command
 
-Arguments :	
+#### Arguments :	
 •	a list of correct minecraft commands : 	[“command 1”, “command 2”]
 or a single command : 			“command”
 
-Examples :
+#### Examples :
 write("a command")  
 write(["command","secondcommand","other command"])
 
@@ -35,7 +35,7 @@ write(["command","secondcommand","other command"])
 ### write_in(commands = [Command list], temp_folder = folder/path , function_name = mcfuction_name)
 Write the commands in the asked mcfunction without changing the writed_folder selected mcfunction
 
-Arguments :	just like write and writed_folder combined
+#### Arguments :	just like write and writed_folder combined
 •	a list of correct minecraft commands : 	[“command 1”, “command 2”]
 or a single command : 			“command”
 
@@ -51,7 +51,7 @@ or a single command : 			“command”
 •	commands : the commands to write in
 
 
-Examples :
+#### Examples :
 write_in(commands = ["command", "other command"], folder = "default" , function_name = "test"})     
 
 
@@ -65,14 +65,14 @@ new_objective(”objective_name”)
 ### get_function(folder = folder, function_name = funct_name)
 Return the Minecraft /function command which target the selected mcfunction
 
-Arguments :
+#### Arguments :
 •	folder : The subfolder of the mcfunction
  	default value : last used folder
  	
 •	function_name : The name of the mcfunction
 
 
-Examples :
+#### Examples :
 get_function(folder = “folder/path”, function_name = “a_function_name”)
 
 keep in mind All command's list can be replaced by functions outputting other command's list
@@ -82,13 +82,13 @@ keep in mind All command's list can be replaced by functions outputting other co
 ### execute(criterias = criterias, commands = commands)
 Add the execute criteria to the command’s list
 
-Arguments :
+#### Arguments :
 •	criterias : a /execute valid argument such as “at”, “as”, “if” . . . 
 •	commands : a list of MCcommands or a Bloccode function returning command’s
 
-Output :
+#### Output :
 the same list with “execute” the criterias and the commands
-Examples :
+#### Examples :
 execute("at @a", ["say hello world","say hi"])
 execute("as @e[tag=snake] if score @s objective = @s other_objective”, 
               ["say hello world", "say hi @s"])
@@ -98,7 +98,7 @@ execute("as @e[tag=snake] if score @s objective = @s other_objective”,
 ### set_entity(entity_type =”entityname”, coords = ["X","Y","Z"],
 tags = ["a","b","c"],nbt = <”nbt_tag:1b”>,scores = {"obj1":1,"obj2":2},            commands = [<Command list>]})
 Summon an entity with the requested position, tags, score, NBT and trigger the commands on it
-Arguments : (all optionals)
+#### Arguments : (all optionals)
 •	entity_type : 	entity summoned
  	default : armor_stand
  	
@@ -113,14 +113,14 @@ Arguments : (all optionals)
 
 •	commands :	the so used command’s list
 
-Examples :
+#### Examples :
 set_entity(entity_type = "zombie", coords = ["0","~","~"], tags = ["a","b","c"], 
            nbt = "NoAi:1b",scores = {"obj1":1,"obj2":2}, commands = ["say hi"])
 
 
 ### while_loop(criteria = "if entity @e[limit=1]", folder = "default", funct_name = "test", commands = "an effective command", late_commands = "this runs after the loop")
 Will run the commands as long as the criteria is meet
-Arguments :	
+#### Arguments :	
 •	criteria
 •	a list of correct minecraft commands : 	[“command 1”, “command 2”]
 or a single command : 			“command”

@@ -20,6 +20,8 @@ writed_folder(folder = "default" , function _name = "test")
 writed_folder(folder = "default" , function _name = "test" , tag_function = "load")
 
 
+
+
 ### write(Commands)
 Write commands of the list in the mcfunction selected by the writed_folder command
 
@@ -30,6 +32,8 @@ or a single command : 			“command”
 #### Examples :
 write("a command")  
 write(["command","secondcommand","other command"])
+
+
 
 
 ### write_in(commands = [Command list], temp_folder = folder/path , function_name = mcfuction_name)
@@ -55,11 +59,15 @@ or a single command : 			“command”
 write_in(commands = ["command", "other command"], folder = "default" , function_name = "test"})     
 
 
+
+
 ### new_objective(objective_name)
 Create the new objective at datapack loading with the scoreboard command
 Arguments : objective_name : a name of Minecraft objective
 Examples :
 new_objective(”objective_name”)
+
+
 
 
 ### get_function(folder = folder, function_name = funct_name)
@@ -79,6 +87,8 @@ keep in mind All command's list can be replaced by functions outputting other co
 
 
 
+
+
 ### execute(criterias = criterias, commands = commands)
 Add the execute criteria to the command’s list
 
@@ -92,6 +102,7 @@ the same list with “execute” the criterias and the commands
 execute("at @a", ["say hello world","say hi"])
 execute("as @e[tag=snake] if score @s objective = @s other_objective”, 
               ["say hello world", "say hi @s"])
+
 
 
 
@@ -118,12 +129,16 @@ set_entity(entity_type = "zombie", coords = ["0","~","~"], tags = ["a","b","c"],
            nbt = "NoAi:1b",scores = {"obj1":1,"obj2":2}, commands = ["say hi"])
 
 
+
+
 ### while_loop(criteria = "if entity @e[limit=1]", folder = "default", funct_name = "test", commands = "an effective command", late_commands = "this runs after the loop")
 Will run the commands as long as the criteria is meet
 #### Arguments :	
 •	criteria
 •	a list of correct minecraft commands : 	[“command 1”, “command 2”]
 or a single command : 			“command”
+
+
 
 
 ## Syntax :
@@ -133,6 +148,7 @@ instructions are written as simple as possible in python language
 The scripts you write are python scripts as well, don't worry, all the syntax you must know is described here
 
 Type of syntax elements :
+
 	“abcd” Quotations mark : 	String, it’s a list of character, used as text
  	used for all Minecraft commands to write
  	stackable : “a” + “b” == “ab”
@@ -149,7 +165,7 @@ Type of syntax elements :
  	
 	{a : A, b : B, c : C} Braces :	dictionary
  	no order : { a : A, b : B} == { b : B, a : A}
- 	{<key1> : <value1>, <key2> : <value2>, … }
+ 	{key1 : value1, key2 : value2, … }
  	
 	abcd    No Symbol	:		Values names
  	used for functions arguments in bloccode, it’s the base of programming

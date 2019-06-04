@@ -158,7 +158,7 @@ def set_entity(entity_type = "armor_stand", coords = ["~","~","~"], tags = [], n
             commandes = ""
             for x in commands :
                 commandes += x + "\n"
-                output += execute("as @e[tag=BCnew] at @s", x)
+                output += execute("as @e[tag=BCnew]", x)
         if scores or commands :
             output.append("tag @e remove BCnew")
     return output

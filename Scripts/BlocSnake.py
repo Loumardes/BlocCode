@@ -1,3 +1,6 @@
+#this example no longer work since the last syntax changes but is useful to give an overview
+
+
 from Bloccode_V1 import *
 
 writed_folder({"folder": "default", "funct_name": "init", "tag_function": "load"})

@@ -3,141 +3,146 @@ Scripting language for Minecraft datapacks
 
 ## Bloccode documentation :
 
-### writed_folder(folder = <folder/path , function_name = <mcfuction_name>)
-Choose the mcfunction where the next commands will be writed
 
-#### Arguments :
-•	folder : The subfolder of the mcfunction
- 	default value : last used folder
- 	
-•	function _name : The name of the mcfunction
- 	
-•	tag_function(optional) : “load” or “tick”
-“load” make the mcfunction run at datapack loading 
-“tick”  make the mcfunction run at each game ticks
-#### Examples :
-writed_folder(folder = "default" , function _name = "test")     
-writed_folder(folder = "default" , function _name = "test" , tag_function = "load")
+set_folder(folder=BCfolder, function_name=BCfunction_name, tag_function=False,
+           file_path="", file_name="BCfile.txt")
+
+Description :
+    This command defines in wich file the "write" function will write his text
 
 
+write(text)
+
+Description :
+    This command write the text input at the end of the existing text inside the file set with "set_file"
 
 
-### write(Commands)
-Write commands of the list in the mcfunction selected by the writed_folder command
+write_in(
+    folder=BCfolder, function_name=BCfunction_name, tag_function=False,
+    file_path="", file_name="BCfile.txt",
+    text="")
 
-#### Arguments :	
-•	a list of correct minecraft commands : 	[“command 1”, “command 2”]
-or a single command : 			“command”
-
-#### Examples :
-write("a command")  
-write(["command","secondcommand","other command"])
+Description :
+    This command is basically a "set_folder" and a "write" command grouped in a single command
+    Does not change the file where the next "write" command will write
 
 
+new_objective(objective_name, stat = "dummy")
+
+Description :
+This command add a scoreboard objective at datapack loading
 
 
-### write_in(commands = [Command list], temp_folder = folder/path , function_name = mcfuction_name)
-Write the commands in the asked mcfunction without changing the writed_folder selected mcfunction
+get_function(folder=BCfolder, function_name="")
 
-#### Arguments :	just like write and writed_folder combined
-•	a list of correct minecraft commands : 	[“command 1”, “command 2”]
-or a single command : 			“command”
+Description :
+This command return the MCcommand "/function" wich target the file gived by the arguments
 
 
-•	folder : The subfolder of the mcfunction
- 	default value : last used folder
-•	function_name : The name of the mcfunction
+def execute(criteria, commands):
 
-•	tag_function(optional) : “load” or “tick”
- 	 “load” makes the mcfunction run at datapack loading 
- 	“tick”  makes the mcfunction run at each game ticks
- 	
-•	commands : the commands to write in
+Description :
+This command execute the commands with the criteria as /execute arguments
 
 
-#### Examples :
-write_in(commands = ["command", "other command"], folder = "default" , function_name = "test"})     
+set_entity(
+    entity_type="armor_stand",
+    coords=["~", "~", "~"],
+    tags=[],
+    nbt="",
+    scores={},
+    commands=[])
+
+Description :
+This command summon an entity with some additions to the /summon command
+
+take_score(target_entity="@s", target_objective="", aim_entity="@s", aim_objective = "")
+
+Description :
+This command return the MCcommand wich give to an entity the score of an other entity
 
 
+while_loop(
+    criteria="", folder=BCfolder, function_name="test", commands="", late_commands="")
+
+Description :
+This create a while loop in minecraft's mcfunctions : the commands are runned as long as the criteria is meet
 
 
-### new_objective(objective_name)
-Create the new objective at datapack loading with the scoreboard command
-Arguments : objective_name : a name of Minecraft objective
-Examples :
-new_objective(”objective_name”)
+for_loop(objectivename="", count=0, entity="@s",
+    criteria="", folder=BCfolder, function_name="test", commands=[], late_commands="")
+
+Description :
+This create a for loop in minecraft's mcfunctions : the commands are runned the given count, and as long as the optional criteria is meet
+set_folder(folder=BCfolder, function_name=BCfunction_name, tag_function=False,
+           file_path="", file_name="BCfile.txt")
+Description :
+    This command defines in wich file the "write" function will write his text
 
 
+write(text)
+
+Description :
+    This command write the text input at the end of the existing text inside the file set with "set_file"
 
 
-### get_function(folder = folder, function_name = funct_name)
-Return the Minecraft /function command which target the selected mcfunction
+write_in(
+    folder=BCfolder, function_name=BCfunction_name, tag_function=False,
+    file_path="", file_name="BCfile.txt",
+    text="")
 
-#### Arguments :
-•	folder : The subfolder of the mcfunction
- 	default value : last used folder
- 	
-•	function_name : The name of the mcfunction
-
-
-#### Examples :
-get_function(folder = “folder/path”, function_name = “a_function_name”)
-
-keep in mind All command's list can be replaced by functions outputting other command's list
+Description :
+    This command is basically a "set_folder" and a "write" command grouped in a single command
+    Does not change the file where the next "write" command will write
 
 
+new_objective(objective_name, stat = "dummy")
+
+Description :
+This command add a scoreboard objective at datapack loading
 
 
+get_function(folder=BCfolder, function_name="")
 
-### execute(criterias = criterias, commands = commands)
-Add the execute criteria to the command’s list
-
-#### Arguments :
-•	criterias : a /execute valid argument such as “at”, “as”, “if” . . . 
-•	commands : a list of MCcommands or a Bloccode function returning command’s
-
-#### Output :
-the same list with “execute” the criterias and the commands
-#### Examples :
-execute("at @a", ["say hello world","say hi"])
-execute("as @e[tag=snake] if score @s objective = @s other_objective”, 
-              ["say hello world", "say hi @s"])
+Description :
+This command return the MCcommand "/function" wich target the file gived by the arguments
 
 
+def execute(criteria, commands):
+
+Description :
+This command execute the commands with the criteria as /execute arguments
 
 
-### set_entity(entity_type =”entityname”, coords = ["X","Y","Z"],
-tags = ["a","b","c"],nbt = <”nbt_tag:1b”>,scores = {"obj1":1,"obj2":2},            commands = [<Command list>]})
-Summon an entity with the requested position, tags, score, NBT and trigger the commands on it
-#### Arguments : (all optionals)
-•	entity_type : 	entity summoned
- 	default : armor_stand
- 	
-•	coords : 	a list of xyz cords, can be absolute, relative “~” or “^” 
- 	default : [“~”,“~”,“~”]
- 	
-•	tags : 		list of tags to add to the entity
+set_entity(
+    entity_type="armor_stand",
+    coords=["~", "~", "~"],
+    tags=[],
+    nbt="",
+    scores={},
+    commands=[])
 
-•	nbt :		nbt to add to the entity
+Description :
+This command summon an entity with some additions to the /summon command
 
-•	scores : 	{“objective_name”: score, …}
+take_score(target_entity="@s", target_objective="", aim_entity="@s", aim_objective = "")
 
-•	commands :	the so used command’s list
-
-#### Examples :
-set_entity(entity_type = "zombie", coords = ["0","~","~"], tags = ["a","b","c"], 
-           nbt = "NoAi:1b",scores = {"obj1":1,"obj2":2}, commands = ["say hi"])
+Description :
+This command return the MCcommand wich give to an entity the score of an other entity
 
 
+while_loop(
+    criteria="", folder=BCfolder, function_name="test", commands="", late_commands="")
+
+Description :
+This create a while loop in minecraft's mcfunctions : the commands are runned as long as the criteria is meet
 
 
-### while_loop(criteria = "if entity @e[limit=1]", folder = "default", funct_name = "test", commands = "an effective command", late_commands = "this runs after the loop")
-Will run the commands as long as the criteria is meet
-#### Arguments :	
-•	criteria
-•	a list of correct minecraft commands : 	[“command 1”, “command 2”]
-or a single command : 			“command”
+for_loop(objectivename="", count=0, entity="@s",
+    criteria="", folder=BCfolder, function_name="test", commands=[], late_commands="")
 
+Description :
+This create a for loop in minecraft's mcfunctions : the commands are runned the given count, and as long as the optional criteria is meet
 
 
 

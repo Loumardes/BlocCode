@@ -49,6 +49,50 @@ def check_required_argument(value, Warning_message):
         return True
 
 
+
+def selector_add_criteria(selector = "@e", criteria = ""):
+    """
+This function insert the criterias inside the selector bracklets
+even if the selector already contain others criterias
+
+Arguments :
+  - selector : the Minecraft selector to edit
+
+  - criteria : a valid selector argument without bracklets
+            or a list of valid selector argument
+
+Output : a new selector containing the new arguments and the previous
+    """
+
+    #Cheching if selector have bracklets
+    char_list = list(selector)
+    if char_list[-1] == "]" :
+        #re-opening the bracklets
+        del char_list[-1]
+        #Convert back to string
+        selector = ""
+        for char in char_list :
+            selector += char
+
+    else :
+        #opening the bracklets
+        selector += "["
+
+    #Cheching if criteria is an unique string or a list
+    if isinstance(criteria, str):
+        
+        #Adding the criteria and closing
+        selector += criteria +"]"
+        
+    else :
+        #Adding all the criterias and closing
+        for c in criteria :
+            selector += ","+ c
+        selector += "]"
+            
+    return selector
+
+
 """
 Scripting functions :
 """
@@ -546,6 +590,7 @@ def default_dat():
         file_path=os.path.join("outputed_functions", datapack_name),
         file_name="pack.mcmeta",
         text=data,
+    )
 
 
 def set_tag_functions():
